@@ -27,6 +27,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Open MCT</title>
+    <script src="data/abc.js"></script>
+    <link rel="stylesheet" href="dist/openmct.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/di%73t/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/di%73t/leaflet.js"></script>
     <script src="dist/openmct.js"></script>
     <link
       rel="icon"
@@ -117,6 +121,7 @@
       openmct.install(timeLinePlugin);
       openmct.install(openmct.plugins.Hyperlink());
       openmct.install(openmct.plugins.UTCTimeSystem());
+      openmct.install(openmct.plugins.TMTC());
       openmct.install(
         openmct.plugins.AutoflowView({
           type: 'telemetry.panel'
@@ -169,6 +174,11 @@
               // maximum duration between start and end bounds
               // for utc-based time systems this is in milliseconds
               // limit: ONE_DAY
+            },
+            {
+              name: 'Packet Counter',
+              timeSystem: 'packet',
+              bounds: { start: 0, end: 65535 }
             },
             {
               name: 'Realtime',
@@ -224,6 +234,7 @@
       openmct.install(openmct.plugins.LADTable());
       openmct.install(openmct.plugins.Filters(['table', 'telemetry.plot.overlay']));
       openmct.install(openmct.plugins.ObjectMigration());
+      openmct.install(gtmTelemetryPlugin());
       openmct.install(
         openmct.plugins.ClearData(
           ['table', 'telemetry.plot.overlay', 'telemetry.plot.stacked', 'example.imagery'],
@@ -233,6 +244,7 @@
       openmct.install(openmct.plugins.Clock({ enableClockIndicator: true }));
       openmct.install(openmct.plugins.Timer());
       openmct.install(openmct.plugins.Timelist());
+      openmct.install(openmct.plugins.SatelliteMap());
       openmct.install(openmct.plugins.BarChart());
       openmct.install(openmct.plugins.ScatterPlot());
       openmct.install(openmct.plugins.EventTimestripPlugin(timeLinePlugin.extendedLinesBus));

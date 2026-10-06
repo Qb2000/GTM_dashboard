@@ -10,6 +10,7 @@ import webpack from 'webpack';
 import { merge } from 'webpack-merge';
 
 import common from './webpack.common.mjs';
+import { createTMTCService } from '../server/tmtc/service.mjs';
 
 export default merge(common, {
   mode: 'development',
@@ -31,6 +32,17 @@ export default merge(common, {
   ],
   devtool: 'eval-source-map',
   devServer: {
+    setupMiddlewares: (middlewares, devServer) => {
+      const service = createTMTCService(fileURLToPath(new URL('../', import.meta.url)));
+      devServer.server.on('close', () => service.then((tmtc) => tmtc.close()));
+      middlewares.unshift({
+        name: 'tmtc',
+        middleware: (req, res, next) => service
+          .then((tmtc) => tmtc.middleware(req, res, next))
+          .catch(next)
+      });
+      return middlewares;
+    },
     devMiddleware: {
       writeToDisk: (filePathString) => {
         const filePath = path.parse(filePathString);
@@ -48,6 +60,11 @@ export default merge(common, {
       directory: fileURLToPath(new URL('../e2e/test-data', import.meta.url)),
       publicPath: '/test-data',
       watch: false
+    },
+    {
+      directory: fileURLToPath(new URL('../data', import.meta.url)),
+      publicPath: '/data',
+      watch: false // 這樣你改 abc.js 時，網頁會自動重新整理
     }]
   }
 });

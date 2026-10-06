@@ -125,9 +125,12 @@ export function useTime(
 
     if (!timeSystemMatchesClock) {
       const optionsWithClock = optionsMatchingTimeSystem.find((option) => option.clock);
-
-      timeContext.value.setClock(optionsWithClock.clock);
-      timeContext.value.setClockOffsets(optionsWithClock.clockOffsets);
+      // Archived numeric domains (for example packet counters) can have only
+      // fixed bounds. Switching to them must not require a realtime clock.
+      if (optionsWithClock) {
+        timeContext.value.setClock(optionsWithClock.clock);
+        timeContext.value.setClockOffsets(optionsWithClock.clockOffsets);
+      }
     }
   });
 

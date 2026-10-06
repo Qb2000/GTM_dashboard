@@ -1,0 +1,7 @@
+{
+  "inputDirectory": "data/tmtc-inbox",
+  "pollMilliseconds": 2000,
+  "settleMilliseconds": 1500,
+  "subsecondMilliseconds": null,
+  "decodedCsvProfile": "gtm-gui-legacy"
+}

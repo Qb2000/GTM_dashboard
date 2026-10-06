@@ -97,6 +97,7 @@
     "webpack-merge": "6.0.1"
   },
   "scripts": {
+    "test:tmtc": "node --test server/tmtc/*.test.mjs",
     "clean": "rm -rf ./dist ./node_modules ./coverage ./html-test-results ./e2e/test-results ./.nyc_output ./e2e/.nyc_output",
     "start": "npx webpack serve --config ./.webpack/webpack.dev.mjs",
     "start:prod": "npx webpack serve --config ./.webpack/webpack.prod.mjs",

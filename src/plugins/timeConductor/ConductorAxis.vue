@@ -189,7 +189,10 @@ export default {
       }
 
       this.xAxis.scale(this.xScale);
-      this.xAxis.tickFormat(utcMultiTimeFormat);
+      const formatter = this.openmct.telemetry.getFormatter(timeSystem.timeFormat);
+      this.xAxis.tickFormat(
+        timeSystem.isUTCBased ? utcMultiTimeFormat : (value) => formatter.format(value)
+      );
       this.axisElement.call(this.xAxis);
       this.setScale();
     },
