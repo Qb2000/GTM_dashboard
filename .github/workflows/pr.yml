@@ -49,7 +49,7 @@ jobs:
             if: steps.node_deps_restore_cache.outputs.cache-hit != 'true' || contains(github.event.pull_request.labels.*.name, 'build:clean')
           - name: Remove build:clean label (if present)
             if: contains(github.event.pull_request.labels.*.name, 'build:clean')
-            uses: actions/github-script@v6
+            uses: actions/github-script@v9
             with:
               script: |
                 const { owner, repo, number } = context.issue;
