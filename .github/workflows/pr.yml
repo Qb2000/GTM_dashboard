@@ -37,7 +37,7 @@ jobs:
             with:
                 node-version: ${{ env.NODE_VERSION }}
                 cache: npm
-          - uses: actions/cache/restore@v4
+          - uses: actions/cache/restore@v6
             id: node_deps_restore_cache
             with:
               path: |
@@ -64,7 +64,7 @@ jobs:
                 } catch (error) {
                   core.warning(`Failed to remove ' + labelToRemove + ' label: ${error.message}`);
                 }
-          - uses: actions/cache/save@v4
+          - uses: actions/cache/save@v6
             id: node_deps_save_cache
             if: steps.node_deps_restore_cache.outputs.cache-hit != 'true' || contains(github.event.pull_request.labels.*.name, 'build:clean')
             with:
@@ -86,7 +86,7 @@ jobs:
             with:
                 node-version: ${{ env.NODE_VERSION }}
                 cache: npm
-          - uses: actions/cache/restore@v4
+          - uses: actions/cache/restore@v6
             with:
               path: |
                 node_modules
@@ -104,7 +104,7 @@ jobs:
             with:
                 node-version: ${{ env.NODE_VERSION }}
                 cache: npm
-          - uses: actions/cache/restore@v4
+          - uses: actions/cache/restore@v6
             with:
               path: |
                 node_modules
@@ -165,7 +165,7 @@ jobs:
           with:
             node-version: ${{ env.NODE_VERSION }}
             cache: npm
-        - uses: actions/cache/restore@v4
+        - uses: actions/cache/restore@v6
           with:
             path: |
               node_modules
@@ -231,7 +231,7 @@ jobs:
           with:
             node-version: ${{ env.NODE_VERSION }}
             cache: npm
-        - uses: actions/cache/restore@v4
+        - uses: actions/cache/restore@v6
           with:
             path: |
               node_modules
@@ -277,7 +277,7 @@ jobs:
           with:
             node-version: ${{ env.NODE_VERSION }}
             cache: npm
-        - uses: actions/cache/restore@v4
+        - uses: actions/cache/restore@v6
           with:
             path: |
               node_modules
@@ -324,7 +324,7 @@ jobs:
           with:
             node-version: ${{ env.NODE_VERSION }}
             cache: npm
-        - uses: actions/cache/restore@v4
+        - uses: actions/cache/restore@v6
           with:
             path: |
               node_modules
