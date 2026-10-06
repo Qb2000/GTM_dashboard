@@ -123,13 +123,13 @@ jobs:
               flags: unit
               name: unit-test-${{ github.run_id }}
               fail_ci_if_error: false
-          - uses: actions/upload-artifact@v4
+          - uses: actions/upload-artifact@v7
             if: always()
             with:
               name: unit-test-results
               path: dist/reports/tests/
               if-no-files-found: warn
-          - uses: actions/upload-artifact@v4
+          - uses: actions/upload-artifact@v7
             if: always()
             with:
               name: unit-test-coverage
@@ -143,7 +143,7 @@ jobs:
               npm -v > /tmp/artifacts/npm-version.txt
               node -v > /tmp/artifacts/node-version.txt
               ls -latR > /tmp/artifacts/dir.txt
-          - uses: actions/upload-artifact@v4
+          - uses: actions/upload-artifact@v7
             if: always()
             with:
               name: unit-test-artifacts
@@ -183,19 +183,19 @@ jobs:
             flags: e2e-ci
             name: e2e-ci-${{ github.run_id }}-shard-${{ matrix.shard }}
             fail_ci_if_error: false
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: e2e-ci-test-results-shard-${{ matrix.shard }}
             path: test-results
             if-no-files-found: warn
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: e2e-ci-coverage-shard-${{ matrix.shard }}
             path: coverage
             if-no-files-found: warn
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: e2e-ci-html-results-shard-${{ matrix.shard }}
@@ -209,7 +209,7 @@ jobs:
             npm -v > /tmp/artifacts/npm-version.txt
             node -v > /tmp/artifacts/node-version.txt
             ls -latR > /tmp/artifacts/dir.txt
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: e2e-ci-artifacts-shard-${{ matrix.shard }}
@@ -239,13 +239,13 @@ jobs:
               dist
             key: ${{ needs.build_and_cache_dependencies_if_needed.outputs.cache_key }}
         - run: npm run test:e2e:visual:ci -- --shard=${{ matrix.shard }}/2
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: visual-a11y-ci-test-results-shard-${{ matrix.shard }}
             path: test-results
             if-no-files-found: warn
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: visual-a11y-ci-html-results-shard-${{ matrix.shard }}
@@ -259,7 +259,7 @@ jobs:
             npm -v > /tmp/artifacts/npm-version.txt
             node -v > /tmp/artifacts/node-version.txt
             ls -latR > /tmp/artifacts/dir.txt
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: visual-a11y-ci-artifacts-shard-${{ matrix.shard }}
@@ -286,13 +286,13 @@ jobs:
             key: ${{ needs.build_and_cache_dependencies_if_needed.outputs.cache_key }}
         - run: npm run test:perf:localhost
         - run: npm run test:perf:contract
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: perf-test-results
             path: test-results
             if-no-files-found: warn
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: perf-html-results
@@ -306,7 +306,7 @@ jobs:
             npm -v > /tmp/artifacts/npm-version.txt
             node -v > /tmp/artifacts/node-version.txt
             ls -latR > /tmp/artifacts/dir.txt
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: perf-test-artifacts
@@ -332,13 +332,13 @@ jobs:
               dist
             key: ${{ needs.build_and_cache_dependencies_if_needed.outputs.cache_key }}
         - run: npm run test:perf:memory
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: mem-test-results
             path: test-results
             if-no-files-found: warn
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: mem-html-results
@@ -352,7 +352,7 @@ jobs:
             npm -v > /tmp/artifacts/npm-version.txt
             node -v > /tmp/artifacts/node-version.txt
             ls -latR > /tmp/artifacts/dir.txt
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           if: always()
           with:
             name: mem-test-artifacts
