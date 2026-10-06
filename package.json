@@ -26,7 +26,7 @@
     "@types/lodash": "4.17.0",
     "@vue/compiler-sfc": "3.4.3",
     "babel-loader": "9.1.0",
-    "babel-plugin-istanbul": "7.0.0",
+    "babel-plugin-istanbul": "8.0.0",
     "comma-separated-values": "3.6.4",
     "copy-webpack-plugin": "13.0.0",
     "cspell": "7.3.8",
