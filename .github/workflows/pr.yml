@@ -20,7 +20,7 @@ jobs:
         runs-on: ubuntu-latest
         container: mcr.microsoft.com/playwright:v1.57.0-jammy 
         steps:
-          - uses: actions/checkout@v4
+          - uses: actions/checkout@v7
           - id: generate_cache_key
             run: |
                 lock_hash="$(sha256sum package-lock.json | awk '{print $1}')"
@@ -32,7 +32,7 @@ jobs:
         runs-on: ubuntu-latest
         container: mcr.microsoft.com/playwright:v1.57.0-jammy 
         steps:
-          - uses: actions/checkout@v4
+          - uses: actions/checkout@v7
           - uses: actions/setup-node@v4
             with:
                 node-version: ${{ env.NODE_VERSION }}
@@ -81,7 +81,7 @@ jobs:
         runs-on: ubuntu-latest
         container: mcr.microsoft.com/playwright:v1.57.0-jammy 
         steps:
-          - uses: actions/checkout@v4
+          - uses: actions/checkout@v7
           - uses: actions/setup-node@v4
             with:
                 node-version: ${{ env.NODE_VERSION }}
@@ -99,7 +99,7 @@ jobs:
             - build_and_cache_dependencies_if_needed
         runs-on: ubuntu-latest
         steps:
-          - uses: actions/checkout@v4
+          - uses: actions/checkout@v7
           - uses: actions/setup-node@v4
             with:
                 node-version: ${{ env.NODE_VERSION }}
@@ -160,7 +160,7 @@ jobs:
       needs: 
         - build_and_cache_dependencies_if_needed
       steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v7
         - uses: actions/setup-node@v4
           with:
             node-version: ${{ env.NODE_VERSION }}
@@ -226,7 +226,7 @@ jobs:
         matrix:
           shard: [1, 2]
       steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v7
         - uses: actions/setup-node@v4
           with:
             node-version: ${{ env.NODE_VERSION }}
@@ -272,7 +272,7 @@ jobs:
           - build_and_cache_dependencies_if_needed
       if: ${{ always() }}
       steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v7
         - uses: actions/setup-node@v4
           with:
             node-version: ${{ env.NODE_VERSION }}
@@ -319,7 +319,7 @@ jobs:
           - build_and_cache_dependencies_if_needed
       if: ${{ always() }}
       steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v7
         - uses: actions/setup-node@v4
           with:
             node-version: ${{ env.NODE_VERSION }}
